@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sorry</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    font-family: 'Playfair Display', serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2a2a2a;
+
+    /* 🌾 Maithili-inspired background */
+    background:
+      radial-gradient(circle at top left, rgba(185, 140, 90, 0.15), transparent 40%),
+      radial-gradient(circle at bottom right, rgba(150, 90, 60, 0.18), transparent 45%),
+      linear-gradient(180deg, #f4efe9, #e8dfd3);
+  }
+
+  .container {
+    text-align: center;
+    padding: 26px;
+    animation: fadeUp 1.4s ease forwards;
+  }
+
+  .name {
+    font-size: 1rem;
+    font-style: italic;
+    color: #8a6b4f;
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: fadeIn 1.6s ease forwards;
+    animation-delay: 0.3s;
+  }
+
+  .text {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    min-height: 90px;
+    letter-spacing: 0.4px;
+    position: relative;
+  }
+
+  /* Soft breathing glow */
+  .container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    box-shadow: 0 0 0 rgba(0,0,0,0);
+    animation: breathe 6s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Cursor */
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.4em;
+    background: #2a2a2a;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+    vertical-align: bottom;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+  }
+
+  @keyframes breathe {
+    0% { box-shadow: 0 0 0 rgba(185,140,90,0.0); }
+    50% { box-shadow: 0 0 30px rgba(185,140,90,0.12); }
+    100% { box-shadow: 0 0 0 rgba(185,140,90,0.0); }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div class="name">Sweety</div>
+  <div class="text" id="typewriter">
+    <span id="text"></span><span class="cursor"></span>
+  </div>
+</div>
+
+<script>
+  const message = "Maaf kar da. Fer aisan nai kartau. I'M SORRY!, I,LL NOT DO IT AGAIN.";
+  let i = 0;
+  const speed = 60;
+  const el = document.getElementById("text");
+
+  function type() {
+    if (i < message.length) {
+      el.innerHTML += message.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+
+  type();
+</script>
+
+</body>
+</html>
